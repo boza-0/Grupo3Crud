@@ -2,7 +2,7 @@ package controlador;
 
 import dao.AlojamientoDAO;
 import dao.TipoDeAlojamientoDAO;
-import infraestructura.JDBC;
+import conexion.ConexionBD;
 import modelo.Alojamiento;
 import modelo.TipoDeAlojamiento;
 import vista.VentanaAlojamientosAlta;
@@ -20,12 +20,12 @@ import java.awt.event.ActionListener;
 public class ControladorAlojamientos {
 
     private VentanaAlojamientosAlta vista;
-    private JDBC jdbc;
+    private ConexionBD jdbc;
     private TipoDeAlojamientoDAO tipoDAO;
 
     public ControladorAlojamientos(VentanaAlojamientosAlta vista) {
         this.vista = vista;
-        this.jdbc = JDBC.getInstancia();
+        this.jdbc = ConexionBD.getInstancia();
         this.tipoDAO = new TipoDeAlojamientoDAO(jdbc);
 
         cargarTiposDeAlojamiento();
@@ -171,6 +171,8 @@ public class ControladorAlojamientos {
         }
 
         vista.getMensajeLabel().setText("Registro añadido");
+        vista.getAceptarButton().setEnabled(false);
+        vista.getCancelarButton().setEnabled(false);
         javax.swing.Timer timer = new javax.swing.Timer(2000, new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {

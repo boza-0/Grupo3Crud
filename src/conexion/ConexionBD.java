@@ -1,7 +1,7 @@
-package infraestructura;
+package conexion;
 
 import java.sql.*;
-import java.io.FileInputStream;
+import java.io.InputStream;
 import java.util.Properties;
 
 /**
@@ -12,20 +12,20 @@ import java.util.Properties;
  * author CALIXTO DEL HOYO, JUAN
  * author GARCÍA MARCHENA, ÁLVARO
  */
-public class JDBC {
+public class ConexionBD {
 
-    private static JDBC instancia;
+    private static ConexionBD instancia;
 
     private Connection conexion;
     private String sentenciaSQL;
     private ResultSet cursor;
 
-    private JDBC() {
+    private ConexionBD() {
     }
 
-    public static JDBC getInstancia() {
+    public static ConexionBD getInstancia() {
         if (instancia == null) {
-            instancia = new JDBC();
+            instancia = new ConexionBD();
         }
         return instancia;
     }
@@ -33,7 +33,18 @@ public class JDBC {
     public boolean setConexion(String rutaProperties) {
         try {
             Properties propiedades = new Properties();
-            propiedades.load(new FileInputStream(rutaProperties));
+
+            InputStream is = ConexionBD.class
+                    .getClassLoader()
+                    .getResourceAsStream(rutaProperties);
+
+            if (is == null) {
+                throw new RuntimeException(
+                        "No se encuentra el fichero de propiedades: " + rutaProperties
+                );
+            }
+
+            propiedades.load(is);
 
             String driver = propiedades.getProperty("driver");
             String url = propiedades.getProperty("url");
@@ -44,6 +55,7 @@ public class JDBC {
             conexion = DriverManager.getConnection(url, usuario, password);
 
             return true;
+
         } catch (Exception e) {
             e.printStackTrace();
             return false;

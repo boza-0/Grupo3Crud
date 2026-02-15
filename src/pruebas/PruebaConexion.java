@@ -1,6 +1,6 @@
 package pruebas;
 
-import infraestructura.JDBC;
+import conexion.ConexionBD;
 
 /**
  * 
@@ -9,11 +9,11 @@ import infraestructura.JDBC;
  * author CALIXTO DEL HOYO, JUAN
  * author GARCÍA MARCHENA, ÁLVARO
  */
-public class PruebaJDBC {
+public class PruebaConexion {
 
     public static void main(String[] args) {
 
-        JDBC jdbc = JDBC.getInstancia();
+        ConexionBD jdbc = ConexionBD.getInstancia();
 
         boolean conectado = jdbc.setConexion("configuracion/bdrural.properties");
 

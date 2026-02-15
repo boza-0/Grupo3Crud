@@ -1,7 +1,7 @@
 package principal;
 
 import controlador.ControladorAlojamientos;
-import infraestructura.JDBC;
+import conexion.ConexionBD;
 import vista.VentanaAlojamientosAlta;
 
 /**
@@ -15,7 +15,7 @@ public class Aplicacion {
 
     public static void main(String[] args) {
 
-        JDBC jdbc = JDBC.getInstancia();
+        ConexionBD jdbc = ConexionBD.getInstancia();
         jdbc.setConexion("configuracion/bdrural.properties");
 
         VentanaAlojamientosAlta vista = new VentanaAlojamientosAlta();

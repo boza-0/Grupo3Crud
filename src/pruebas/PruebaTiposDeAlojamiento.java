@@ -1,7 +1,7 @@
 package pruebas;
 
 import dao.TipoDeAlojamientoDAO;
-import infraestructura.JDBC;
+import conexion.ConexionBD;
 import modelo.TipoDeAlojamiento;
 
 import java.util.List;
@@ -17,7 +17,7 @@ public class PruebaTiposDeAlojamiento {
 
     public static void main(String[] args) {
 
-        JDBC jdbc = JDBC.getInstancia();
+        ConexionBD jdbc = ConexionBD.getInstancia();
         jdbc.setConexion("configuracion/bdrural.properties");
 
         TipoDeAlojamientoDAO dao = new TipoDeAlojamientoDAO(jdbc);
