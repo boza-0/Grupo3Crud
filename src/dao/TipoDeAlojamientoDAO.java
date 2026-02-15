@@ -1,6 +1,6 @@
 package dao;
 
-import conexion.ConexionBD;
+import conexion.JDBC;
 import modelo.TipoDeAlojamiento;
 
 import java.sql.ResultSet;
@@ -17,9 +17,9 @@ import java.util.List;
  */
 public class TipoDeAlojamientoDAO {
 
-    private ConexionBD jdbc;
+    private JDBC jdbc;
 
-    public TipoDeAlojamientoDAO(ConexionBD jdbc) {
+    public TipoDeAlojamientoDAO(JDBC jdbc) {
         this.jdbc = jdbc;
     }
 

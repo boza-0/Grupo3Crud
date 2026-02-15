@@ -2,7 +2,7 @@ package controlador;
 
 import dao.AlojamientoDAO;
 import dao.TipoDeAlojamientoDAO;
-import conexion.ConexionBD;
+import conexion.JDBC;
 import modelo.Alojamiento;
 import modelo.TipoDeAlojamiento;
 import vista.VentanaAlojamientosAlta;
@@ -20,12 +20,12 @@ import java.awt.event.ActionListener;
 public class ControladorAlojamientos {
 
     private VentanaAlojamientosAlta vista;
-    private ConexionBD jdbc;
+    private JDBC jdbc;
     private TipoDeAlojamientoDAO tipoDAO;
 
     public ControladorAlojamientos(VentanaAlojamientosAlta vista) {
         this.vista = vista;
-        this.jdbc = ConexionBD.getInstancia();
+        this.jdbc = JDBC.getInstancia();
         this.tipoDAO = new TipoDeAlojamientoDAO(jdbc);
 
         cargarTiposDeAlojamiento();

@@ -1,6 +1,6 @@
 package dao;
 
-import conexion.ConexionBD;
+import conexion.JDBC;
 import modelo.Alojamiento;
 
 /**
@@ -13,9 +13,9 @@ import modelo.Alojamiento;
  */
 public class AlojamientoDAO {
 
-    private ConexionBD jdbc;
+    private JDBC jdbc;
 
-    public AlojamientoDAO(ConexionBD jdbc) {
+    public AlojamientoDAO(JDBC jdbc) {
         this.jdbc = jdbc;
     }
 

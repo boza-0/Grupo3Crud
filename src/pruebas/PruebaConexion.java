@@ -1,6 +1,6 @@
 package pruebas;
 
-import conexion.ConexionBD;
+import conexion.JDBC;
 
 /**
  * 
@@ -13,7 +13,7 @@ public class PruebaConexion {
 
     public static void main(String[] args) {
 
-        ConexionBD jdbc = ConexionBD.getInstancia();
+        JDBC jdbc = JDBC.getInstancia();
 
         boolean conectado = jdbc.setConexion("configuracion/bdrural.properties");
 

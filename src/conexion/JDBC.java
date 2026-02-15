@@ -12,20 +12,20 @@ import java.util.Properties;
  * author CALIXTO DEL HOYO, JUAN
  * author GARCÍA MARCHENA, ÁLVARO
  */
-public class ConexionBD {
+public class JDBC {
 
-    private static ConexionBD instancia;
+    private static JDBC instancia;
 
     private Connection conexion;
     private String sentenciaSQL;
     private ResultSet cursor;
 
-    private ConexionBD() {
+    private JDBC() {
     }
 
-    public static ConexionBD getInstancia() {
+    public static JDBC getInstancia() {
         if (instancia == null) {
-            instancia = new ConexionBD();
+            instancia = new JDBC();
         }
         return instancia;
     }
@@ -34,7 +34,7 @@ public class ConexionBD {
         try {
             Properties propiedades = new Properties();
 
-            InputStream is = ConexionBD.class
+            InputStream is = JDBC.class
                     .getClassLoader()
                     .getResourceAsStream(rutaProperties);
 
