@@ -3,6 +3,9 @@ package dao;
 import conexion.JDBC;
 import modelo.Alojamiento;
 
+import java.sql.PreparedStatement;
+import java.sql.SQLException;
+
 /**
  * DAO para la tabla alojamientos
  *
@@ -21,23 +24,25 @@ public class AlojamientoDAO {
 
     public boolean insertar(Alojamiento a) {
 
-        try {
-            String sql =
-                "INSERT INTO alojamientos " +
-                "(nombre, poblacion, provincia, capacidad, tipo, ubicacion, alquilado) VALUES (" +
-                "'" + a.getNombre() + "', " +
-                "'" + a.getPoblacion() + "', " +
-                "'" + a.getProvincia() + "', " +
-                a.getCapacidad() + ", " +
-                a.getTipo() + ", " +
-                "'" + a.getUbicacion() + "', " +
-                (a.isAlquilado() ? 1 : 0) +
-                ")";
+        String sql =
+            "INSERT INTO alojamientos " +
+            "(nombre, poblacion, provincia, capacidad, tipo, ubicacion, alquilado) " +
+            "VALUES (?, ?, ?, ?, ?, ?, ?)";
 
-            jdbc.setSentenciaSQL(sql);
-            return jdbc.ejecutar();
+        try (PreparedStatement ps =
+                 jdbc.getConexion().prepareStatement(sql)) {
 
-        } catch (Exception e) {
+            ps.setString(1, a.getNombre());
+            ps.setString(2, a.getPoblacion());
+            ps.setString(3, a.getProvincia());
+            ps.setInt(4, a.getCapacidad());
+            ps.setInt(5, a.getTipo());
+            ps.setString(6, a.getUbicacion().name());
+            ps.setBoolean(7, a.isAlquilado());
+
+            return ps.executeUpdate() == 1;
+
+        } catch (SQLException e) {
             e.printStackTrace();
             return false;
         }

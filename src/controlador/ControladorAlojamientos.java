@@ -9,6 +9,7 @@ import vista.VentanaAlojamientosAlta;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import modelo.Ubicacion;
 
 /**
  *
@@ -56,6 +57,9 @@ public class ControladorAlojamientos {
         vista.getSalirButton().setVisible(true);
         vista.getAceptarButton().setVisible(false);
         vista.getCancelarButton().setVisible(false);
+        
+        vista.getAceptarButton().setEnabled(true);
+        vista.getCancelarButton().setEnabled(true);
 
         vista.getMensajeLabel().setText(" ");
     }
@@ -144,11 +148,12 @@ public class ControladorAlojamientos {
             return;
         }
 
-        String ubicacion;
+        Ubicacion ubicacion;
+
         if (vista.getEnPoblacionRadioButton().isSelected()) {
-            ubicacion = "En población";
+            ubicacion = Ubicacion.POBLACION;
         } else if (vista.getAisladoRadioButton().isSelected()) {
-            ubicacion = "Aislado";
+            ubicacion = Ubicacion.AISLADO;
         } else {
             vista.getMensajeLabel().setText("Debe seleccionar una ubicación");
             return;

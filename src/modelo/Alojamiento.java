@@ -15,7 +15,7 @@ public class Alojamiento {
     private String provincia;
     private int capacidad;
     private int tipo;
-    private String ubicacion;
+    private Ubicacion ubicacion;
     private boolean alquilado;
 
     public Alojamiento() {
@@ -72,11 +72,11 @@ public class Alojamiento {
         this.tipo = tipo;
     }
 
-    public String getUbicacion() {
+    public Ubicacion getUbicacion() {
         return ubicacion;
     }
 
-    public void setUbicacion(String ubicacion) {
+    public void setUbicacion(Ubicacion ubicacion) {
         this.ubicacion = ubicacion;
     }
 
