@@ -24,9 +24,9 @@ public class ControladorAlojamientos {
     private JDBC jdbc;
     private TipoDeAlojamientoDAO tipoDAO;
 
-    public ControladorAlojamientos(VentanaAlojamientosAlta vista) {
+    public ControladorAlojamientos(VentanaAlojamientosAlta vista, JDBC jdbc) {
         this.vista = vista;
-        this.jdbc = JDBC.getInstancia();
+        this.jdbc = jdbc;
         this.tipoDAO = new TipoDeAlojamientoDAO(jdbc);
 
         cargarTiposDeAlojamiento();

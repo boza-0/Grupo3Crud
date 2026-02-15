@@ -19,7 +19,7 @@ public class Aplicacion {
         jdbc.setConexion("configuracion/bdrural.properties");
 
         VentanaAlojamientosAlta vista = new VentanaAlojamientosAlta();
-        new ControladorAlojamientos(vista);
+        new ControladorAlojamientos(vista, jdbc);
 
         vista.setVisible(true);
     }
